@@ -11,7 +11,8 @@ import org.hibernate.annotations.NaturalId;
  * @author Ernest Emmanuel Utibe
  */
 
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

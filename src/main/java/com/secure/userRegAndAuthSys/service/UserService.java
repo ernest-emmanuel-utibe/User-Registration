@@ -14,6 +14,7 @@ import java.util.Optional;
 public interface UserService {
     User registerUser(RegistrationRequest registrationRequest);
     List<User> getRegisteredUsers();
-
     Optional<User> findByEmail(String email);
+
+    void saveUserVerificationToken(User theUser, String verificationToken);
 }

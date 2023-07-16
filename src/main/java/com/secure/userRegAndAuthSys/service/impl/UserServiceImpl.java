@@ -3,6 +3,8 @@ package com.secure.userRegAndAuthSys.service.impl;
 import com.secure.userRegAndAuthSys.controller.registration.RegistrationRequest;
 import com.secure.userRegAndAuthSys.data.models.User;
 import com.secure.userRegAndAuthSys.data.repository.UserRepository;
+import com.secure.userRegAndAuthSys.event.token.VerificationToken;
+import com.secure.userRegAndAuthSys.event.token.VerificationTokenRepository;
 import com.secure.userRegAndAuthSys.exception.UserAlreadyExistsException;
 import com.secure.userRegAndAuthSys.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+
+    private final VerificationTokenRepository verificationTokenRepository;
     @Override
     public User registerUser(RegistrationRequest registrationRequest) {
         // Check if the user email is already in existence in the database
@@ -54,5 +58,11 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findByEmail(String email) {
         // Find the user by their email
         return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void saveUserVerificationToken(User theUser, String token) {
+        var theVerificationToken = new VerificationToken(token, theUser);
+        verificationTokenRepository.save(theVerificationToken);
     }
 }

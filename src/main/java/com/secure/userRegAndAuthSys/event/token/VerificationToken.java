@@ -1,9 +1,5 @@
 package com.secure.userRegAndAuthSys.event.token;
 
-/*
-    @author Ernest Emmanuel Utibe
-*/
-
 import com.secure.userRegAndAuthSys.data.models.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +7,9 @@ import lombok.*;
 import java.util.Calendar;
 import java.util.Date;
 
+/*
+  *  @author Ernest Emmanuel Utibe
+*/
 @Getter
 @Setter
 @Entity
@@ -28,12 +27,14 @@ public class VerificationToken {
     private User user;
 
     public VerificationToken(String token, User user) {
+        super();
         this.token = token;
         this.user = user;
         this.expirationTime = this.getTokenExpirationTime();
     }
 
     public VerificationToken(String token) {
+        super();
         this.token = token;
         this.expirationTime = this.getTokenExpirationTime();
     }
