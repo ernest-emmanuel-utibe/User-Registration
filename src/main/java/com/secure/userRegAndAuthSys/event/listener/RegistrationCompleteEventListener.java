@@ -23,6 +23,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
     public void onApplicationEvent(RegistrationCompleteEvent event) {
         // Get the newly registered users
         User theNewlyRegisteredUser = event.getUser();
+        
         // Create the verification Token for the user
         String verificationToken = UUID.randomUUID().toString();
         // Save the verification token for the user
